@@ -34,7 +34,7 @@ data <- data %>%
   left_join(genre_median_ratings, by = "genre")
 
 # Generate the plot
-ggplot(data, aes(x = imdb_rating, y = reorder(genre, median_rating), fill = median_rating)) +
+draft_plot <- ggplot(data, aes(x = imdb_rating, y = reorder(genre, median_rating), fill = median_rating)) +
   geom_boxplot(outlier.shape = NA) + # Remove outliers from the plot
   scale_fill_gradient(low = "white", high = "red", name = "Median IMDb Rating") +
   labs(title = "IMDb Ratings Distribution by Genre",
@@ -42,5 +42,8 @@ ggplot(data, aes(x = imdb_rating, y = reorder(genre, median_rating), fill = medi
   theme_minimal() +
   theme(legend.position = "right")
 
+# Show the plot
+show(draft_plot)
+
 # Saving the plot
-ggsave("Charts/chart.jpg")
+ggsave("Charts/draft.jpg", plot = draft_plot)
